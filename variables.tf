@@ -133,7 +133,7 @@ variable "db_name" {
 variable "db_instance_class" {
   type        = string
   description = "wordpress db instance type"
-  default     = "db.t2.micro"
+  default     = "db.t3.micro"
 }
 variable "db_username" {
   type        = string
