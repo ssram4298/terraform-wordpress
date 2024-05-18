@@ -23,7 +23,7 @@ resource "aws_db_instance" "wordpress" {
 }
 
 resource "aws_db_subnet_group" "wordpress" {
-  name       = "${var.app_name}-db-subnet-group"
+  name       = "${var.app_name}_db_subnet_group"
   subnet_ids = module.network.private_subnets
 
   tags = {
