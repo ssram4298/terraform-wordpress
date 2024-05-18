@@ -97,7 +97,7 @@ resource "aws_security_group" "wordpress_rds" {
 }
 
 # wordpress ec2 sg
-resource "aws_security_group" "wordpress_ec2_sg" {
+resource "aws_security_group" "wordpress_ec2" {
   name        = "${local.name_prefix}-wordpress-ec2-sg"
   description = "Allows inbound http/https traffic from ALB sg and all outboound traffic. Attached to ec2"
   vpc_id      = module.network.vpc_id
