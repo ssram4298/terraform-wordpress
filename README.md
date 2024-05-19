@@ -4,6 +4,8 @@ This repository contains Terraform scripts to set up a highly available and scal
 
 ## Architecture Overview
 
+Add architecture diagram here
+
 ### Components
 
 - **AWS Region**: US East 1
