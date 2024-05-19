@@ -31,7 +31,7 @@ module "wordpress_asg" {
   image_id          = data.aws_ami.amazon_linux2.id
   instance_type     = var.wordpress_template_instance_type
   enable_monitoring = var.wordpress_template_enable_monitoring
-  security_groups   = [aws_security_group.ssh_sg.id, aws_security_group.wordpress_ec2_sg.id]
+  security_groups   = [aws_security_group.ssh_sg.id, aws_security_group.wordpress_ec2.id]
   key_name          = var.key_name
 
   user_data = base64encode(data.template_file.user_data.rendered)
