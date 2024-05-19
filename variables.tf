@@ -1,3 +1,5 @@
+# environment vars
+#---------------------------------------
 variable "environment" {
   type    = string
   default = "DEV"
@@ -18,8 +20,8 @@ variable "aws_region" {
 }
 variable "app_name" {
   type        = string
-  description = "application name"
-  default     = "wordpressApp"
+  description = "app name prefix for naming"
+  default     = "wordpressapp"
 }
 
 variable "az_count" {
@@ -116,6 +118,11 @@ variable "db_port" {
 
 # RDS wordpress
 #----------------------------------------
+variable "db_identifier" {
+  type        = string
+  description = "db instance name"
+  default     = "wordpress"
+}
 variable "db_allocated_storage" {
   type        = number
   description = "db allocated storage"
@@ -133,7 +140,7 @@ variable "db_name" {
 variable "db_instance_class" {
   type        = string
   description = "wordpress db instance type"
-  default     = "db.t3.micro"
+  default     = "db.t2.micro"
 }
 variable "db_username" {
   type        = string
@@ -165,10 +172,20 @@ variable "db_deletion_protection" {
   description = "wordpress db deletion protection"
   default     = false
 }
+variable "db_availability_zone" {
+  type        = string
+  description = "wordpress db engine version"
+  default     = "us-east-1a"
+}
 variable "db_skip_final_snapshot" {
   type        = bool
   description = "skip final snapshot"
   default     = true
+}
+variable "db_final_snapshot_identifier" {
+  type        = string
+  description = "final snapshot name"
+  default     = "wordpress-db-final-snapshot"
 }
 
 # ALB
@@ -188,7 +205,6 @@ variable "web_alb_internal" {
   description = "internal facing"
   default     = false
 }
-
 #target group
 variable "web_alb_tg_http_name" {
   type        = string
@@ -210,8 +226,7 @@ variable "web_alb_tg_http_type" {
   description = "target group type"
   default     = "instance"
 }
-
-#listener
+#listner
 variable "web_alb_listener_http_protocol" {
   type        = string
   description = "http listener protocol"
@@ -226,4 +241,75 @@ variable "web_alb_listener_http_action_type" {
   type        = string
   description = "http listener action type"
   default     = "forward"
+}
+
+# WordPress ASG
+#----------------------------------------
+variable "wordpress_asg_min_size" {
+  type        = number
+  description = "asg min size"
+  default     = 2
+}
+variable "wordpress_asg_max_size" {
+  type        = number
+  description = "asg max size"
+  default     = 4
+}
+variable "wordpress_asg_health_check_type" {
+  type        = string
+  description = "asg health check type "
+  default     = "ELB"
+}
+#Launch template
+variable "wordpress_server_name" {
+  type        = string
+  description = "wordpress template name"
+  default     = "wordpress-server"
+}
+variable "wordpress_template_instance_type" {
+  type        = string
+  description = "wordpress server type"
+  default     = "t2.micro"
+}
+variable "key_name" {
+  type        = string
+  description = "wordpress server key pair"
+  sensitive   = true
+}
+#Wordpress account
+variable "wp_username" {
+  type        = string
+  description = "wordpress username"
+  sensitive   = true
+}
+variable "wp_password" {
+  type        = string
+  description = "wordpress password"
+  sensitive   = true
+}
+variable "wp_email" {
+  type        = string
+  description = "wordpress email"
+  sensitive   = true
+}
+variable "wordpress_template_enable_monitoring" {
+  type        = bool
+  description = "wordpress server enable monitoring"
+  default     = true
+}
+#Scaling policy
+variable "wordpress_asg_scaling_policy_type" {
+  type        = string
+  description = "wordpress asg scalng policy type"
+  default     = "TargetTrackingScaling"
+}
+variable "wordpress_asg_scaling_policy_metric_type" {
+  type        = string
+  description = "wordpress asg scalng policy metric type"
+  default     = "ASGAverageCPUUtilization"
+}
+variable "wordpress_asg_scaling_policy_target_value" {
+  type        = number
+  description = "wordpress asg scalng policy target value"
+  default     = 75.0
 }
