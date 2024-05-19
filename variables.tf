@@ -170,3 +170,60 @@ variable "db_skip_final_snapshot" {
   description = "skip final snapshot"
   default     = true
 }
+
+# ALB
+#----------------------------------------
+variable "web_alb_name" {
+  type        = string
+  description = "alb name"
+  default     = "web-alb"
+}
+variable "web_alb_type" {
+  type        = string
+  description = "alb type"
+  default     = "application"
+}
+variable "web_alb_internal" {
+  type        = bool
+  description = "internal facing"
+  default     = false
+}
+
+#target group
+variable "web_alb_tg_http_name" {
+  type        = string
+  description = "target group name"
+  default     = "wp-server-tg-http"
+}
+variable "web_alb_tg_http_protocol" {
+  type        = string
+  description = "target group protocol"
+  default     = "HTTP"
+}
+variable "web_alb_tg_http_port" {
+  type        = number
+  description = "target group port"
+  default     = 80
+}
+variable "web_alb_tg_http_type" {
+  type        = string
+  description = "target group type"
+  default     = "instance"
+}
+
+#listener
+variable "web_alb_listener_http_protocol" {
+  type        = string
+  description = "http listener protocol"
+  default     = "HTTP"
+}
+variable "web_alb_listener_http_port" {
+  type        = number
+  description = "http listener port"
+  default     = 80
+}
+variable "web_alb_listener_http_action_type" {
+  type        = string
+  description = "http listener action type"
+  default     = "forward"
+}
