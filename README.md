@@ -4,7 +4,7 @@ This repository contains Terraform scripts to set up a highly available and scal
 
 ## Architecture Overview
 
-Add architecture diagram here
+![Project Architecture](architecture.png)
 
 ### Components
 
