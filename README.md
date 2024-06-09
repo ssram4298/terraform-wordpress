@@ -118,7 +118,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgements
 
-- Inspired by AWS best practices for high availability and scalability.
+- Inspired by the amazing blog post of Alok Trivedi - https://medium.com/@aaloktrivedi/creating-a-ci-cd-pipeline-with-terraform-cloud-to-deploy-wordpress-application-infrastructure-part-8f1cb9f4f022
 - Thanks to the Terraform community for their valuable contributions.
 
 ---
